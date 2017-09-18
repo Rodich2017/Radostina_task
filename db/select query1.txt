@@ -1,0 +1,4 @@
+select  name, phnum, phstat
+from myschema.phones
+inner join myschema.owner  on ( phones.phown = owner.ownid)
+where ownid between 6 and 9;

@@ -1,0 +1,10 @@
+insert into myschema.owner values 
+ ('1', 'Ivan Ivanov', 'i.ivanov@some.com', 'PM', 'Maintenance Manager'),
+ ('2', 'Dragan Ivanov', 'd.ivanov@some.com', 'PM', 'Maintenance Engineer'),
+ ('3', 'Kaloyan Dimitrov', 'k.dimitrov@some.com', 'HR', 'HR Manager'),
+ ('4', 'Misho Ivanov', 'm.ivanov@some.com', 'HR', 'HR Administrator'),
+ ('5', 'Ivan Pwtrov', 'i.petrov@some.com', 'MM', 'Buyer'),
+ ('6', 'Darina Ivanova', 'd.ivanova@some.com', 'WH', 'Warehouse Manager'),
+ ('7', 'Ivan Dimitrov', 'i.dimitrov@some.com', 'FI', 'Account Receivable'),
+ ('8', 'Ivanka Petrova', 'i.petrova@some.com', 'FI', 'Account Payments'),
+ ('9', 'Stoyan Stoev', 's.stoev@some.com', 'FI', 'Accounting Manager')
