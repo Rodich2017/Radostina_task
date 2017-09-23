@@ -1,0 +1,210 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.5
+-- Dumped by pg_dump version 9.6.5
+
+-- Started on 2017-09-23 20:14:11
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 5 (class 2615 OID 16413)
+-- Name: myschema; Type: SCHEMA; Schema: -; Owner: tstuser
+--
+
+CREATE SCHEMA myschema;
+
+
+ALTER SCHEMA myschema OWNER TO tstuser;
+
+--
+-- TOC entry 1 (class 3079 OID 12387)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2150 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = myschema, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 186 (class 1259 OID 16460)
+-- Name: owner; Type: TABLE; Schema: myschema; Owner: tstuser
+--
+
+CREATE TABLE owner (
+    ownid integer NOT NULL,
+    fullname character(50),
+    mailadr character(25),
+    deptname character varying(2),
+    posdescr character varying(30)
+);
+
+
+ALTER TABLE owner OWNER TO tstuser;
+
+--
+-- TOC entry 187 (class 1259 OID 16494)
+-- Name: phones; Type: TABLE; Schema: myschema; Owner: tstuser
+--
+
+CREATE TABLE phones (
+    pid integer NOT NULL,
+    phnum character varying,
+    phown integer,
+    phtype character(1),
+    phstat boolean,
+    notes character(30)
+);
+
+
+ALTER TABLE phones OWNER TO tstuser;
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 188 (class 1259 OID 16531)
+-- Name: phnumbers; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW phnumbers AS
+ SELECT owner.fullname,
+    phones.phnum,
+    phones.phstat
+   FROM (myschema.phones
+     JOIN myschema.owner ON ((phones.phown = owner.ownid)))
+  WHERE (phones.phstat = true);
+
+
+ALTER TABLE phnumbers OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 16539)
+-- Name: view_activephones; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW view_activephones AS
+ SELECT owner.fullname,
+    phones.phnum,
+    phones.phstat
+   FROM (myschema.phones
+     JOIN myschema.owner ON ((phones.phown = owner.ownid)))
+  WHERE (phones.phstat = true);
+
+
+ALTER TABLE view_activephones OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 16535)
+-- Name: view_phnumbers; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW view_phnumbers AS
+ SELECT owner.fullname,
+    phones.phnum,
+    phones.phstat
+   FROM (myschema.phones
+     JOIN myschema.owner ON ((phones.phown = owner.ownid)))
+  WHERE (phones.phstat = true);
+
+
+ALTER TABLE view_phnumbers OWNER TO postgres;
+
+SET search_path = myschema, pg_catalog;
+
+--
+-- TOC entry 2142 (class 0 OID 16460)
+-- Dependencies: 186
+-- Data for Name: owner; Type: TABLE DATA; Schema: myschema; Owner: tstuser
+--
+
+COPY owner (ownid, fullname, mailadr, deptname, posdescr) FROM stdin;
+1	Ivan Ivanov                                       	i.ivanov@some.com        	PM	Maintenance Manager
+2	Dragan Ivanov                                     	d.ivanov@some.com        	PM	Maintenance Engineer
+3	Kaloyan Dimitrov                                  	k.dimitrov@some.com      	HR	HR Manager
+4	Misho Ivanov                                      	m.ivanov@some.com        	HR	HR Administrator
+5	Ivan Pwtrov                                       	i.petrov@some.com        	MM	Buyer
+6	Darina Ivanova                                    	d.ivanova@some.com       	WH	Warehouse Manager
+7	Ivan Dimitrov                                     	i.dimitrov@some.com      	FI	Account Receivable
+8	Ivanka Petrova                                    	i.petrova@some.com       	FI	Account Payments
+9	Stoyan Stoev                                      	s.stoev@some.com         	FI	Accounting Manager
+\.
+
+
+--
+-- TOC entry 2143 (class 0 OID 16494)
+-- Dependencies: 187
+-- Data for Name: phones; Type: TABLE DATA; Schema: myschema; Owner: tstuser
+--
+
+COPY phones (pid, phnum, phown, phtype, phstat, notes) FROM stdin;
+1	888000555	1	M	t	                              
+2	52500101	1	F	f	                              
+3	52500109	1	F	t	                              
+4	888000111	2	M	t	                              
+5	52310310	3	F	t	                              
+6	52310310	6	F	f	                              
+7	888000222	6	M	t	                              
+8	888000555	7	M	t	                              
+9	888000555	7	M	t	                              
+10	52309309	8	F	t	                              
+11	888000333	9	M	f	                              
+12	888000444	9	M	t	                              
+\.
+
+
+--
+-- TOC entry 2018 (class 2606 OID 16464)
+-- Name: owner owner_pkey; Type: CONSTRAINT; Schema: myschema; Owner: tstuser
+--
+
+ALTER TABLE ONLY owner
+    ADD CONSTRAINT owner_pkey PRIMARY KEY (ownid);
+
+
+--
+-- TOC entry 2020 (class 2606 OID 16501)
+-- Name: phones phones_pkey; Type: CONSTRAINT; Schema: myschema; Owner: tstuser
+--
+
+ALTER TABLE ONLY phones
+    ADD CONSTRAINT phones_pkey PRIMARY KEY (pid);
+
+
+--
+-- TOC entry 2021 (class 2606 OID 16502)
+-- Name: phones phones_phown_fkey; Type: FK CONSTRAINT; Schema: myschema; Owner: tstuser
+--
+
+ALTER TABLE ONLY phones
+    ADD CONSTRAINT phones_phown_fkey FOREIGN KEY (phown) REFERENCES owner(ownid);
+
+
+-- Completed on 2017-09-23 20:14:11
+
+--
+-- PostgreSQL database dump complete
+--
+
