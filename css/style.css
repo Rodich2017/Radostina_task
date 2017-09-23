@@ -55,3 +55,10 @@ input::after {
 .nav-list li.active {
   background-color: rgba(255, 255, 255, 0.95);
 }
+fieldset {
+  width: 40%;	
+  border: 0.5em;
+  padding: auto;
+  margin: auto;
+  display: inline;
+}

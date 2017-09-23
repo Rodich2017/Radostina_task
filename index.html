@@ -49,22 +49,32 @@
                     <input type="text" name="phone" id="name" placeholder="1234567" />
                 </label>
 				
-				<!--form method="post"-->
+				<!-- !!!!!!! Da potarsya kak da gi posicioniram edno do drugo !!!!!!! -->
+
+				<form class="fieldset"/>
+				<br></br>
+				<!-- form method="post"-->
 						<fieldset>
-								<legend><b>Type of phone</b></legend>
-										<input type="checkbox" name="ph_type" value="Cat" />Mobile<br />
-										<input type="checkbox" name="ph_type" value="Dog" />Fixed<br />
+								<legend><b>Connectivity?</b></legend>
+										<input type="radio" name="phtype" value="mob" />Mobile<br />
+										<input type="radio" name="phtype" value="fix" />Fixed<br />
+										<!-- input type="submit" value="Submit now" /-->
+								
 						</fieldset>
 				<!--/form-->
+
 				
 				<!-- form method="post"-->
 						<fieldset>
 								<legend><b>Active?</b></legend>
-										<input type="radio" name="stat" value="true" />Yes<br />
-										<input type="radio" name="stat" value="false" />No<br />
+										<input type="radio" name="phstat" value="true" />Yes<br />
+										<input type="radio" name="phstat" value="false" />No<br />
 										<!-- input type="submit" value="Submit now" /-->
+								
 						</fieldset>
 				<!--/form-->
+				
+				</form>
 				
                 <label>
                     <input type="text" name="email" id="name" placeholder="john@example.com" />
