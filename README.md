@@ -1,7 +1,7 @@
    Local: http://localhost:3000
-
    ---------------------------------------
-           UI: http://localhost:3001
+      UI: http://localhost:3001
+   ---------------------------------------
 
 
 This is a base template for Angular 2. It contains the core files you will need when starting an Angular 2 project.
