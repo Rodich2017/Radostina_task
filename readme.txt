@@ -10,7 +10,7 @@ Make connection with postgres database. So there are interface provider, data ac
 
 Angular
 The goals of Angular is to bind code between user interface and objects. This tool is very, very power I think. It is
-good for mobile apps and
+good for apps on web, mobile web, native mobile and native desktop.
 
 
 Ebean framework
