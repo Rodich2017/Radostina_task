@@ -1,4 +1,8 @@
-![](http://i.imgur.com/CqXcsZ9.png)
+   Local: http://localhost:3000
+
+   ---------------------------------------
+           UI: http://localhost:3001
+
 
 This is a base template for Angular 2. It contains the core files you will need when starting an Angular 2 project.
 To get started, follow the instructions below.
